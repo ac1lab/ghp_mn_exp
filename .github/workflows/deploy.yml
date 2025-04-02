@@ -1,5 +1,5 @@
-name: Deploy to github-pages
-run-name: ${{ github.actor }} is running GitHub Actions 🚀
+name: Deploy main to github-pages
+run-name: ${{ github.actor }} is deploying 'main' branch to github-pages 🚀
 
 on:
     push:
@@ -7,34 +7,29 @@ on:
     workflow_dispatch:
 
 jobs:
-    Explore-GitHub-Actions:
+    build:
         runs-on: ubuntu-latest
         steps:
           - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
           - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
           - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+            # ... checkout code
           - name: Check out repository code
-            uses: actions/checkout@v4
+            uses: actions/checkout@v4  
           - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+            # ... install dependencies
           - run: echo "🖥️ The workflow is now ready to test your code on the runner."
           - name: List files in the repository
             run: |
               ls ${{ github.workspace }}
-          - run: echo "🍏 This job's status is ${{ job.status }}."
-
-    build:
-        runs-on: ubuntu-latest                                
-        steps:
-            # ... checkout and install dependencies
-
-            - name: 📄 Export notebook
+          - name: 📄 Export notebook
               run: |
                   marimo export html-wasm notebook.py -o path/to/output --mode run
-
-            - name: 📦 Upload Pages Artifact
+          - name: 📦 Upload Pages Artifact
               uses: actions/upload-pages-artifact@v3
               with:
                   path: path/to/output
+          - run: echo "🍏 This job's status is ${{ job.status }}."
 
     deploy:
         needs: build
@@ -42,11 +37,9 @@ jobs:
         environment:
             name: github-pages
             url: ${{ steps.deployment.outputs.page_url }}
-
         permissions:
             pages: write
-            id-token: write
-
+            id-token: write                           
         steps:
             - name: 🌐 Deploy to GitHub Pages
               id: deployment
