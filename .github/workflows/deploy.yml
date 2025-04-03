@@ -40,11 +40,11 @@ jobs:
               # ... build
           - name: 📄 Export notebook
               run: |
-                  marimo export html-wasm notebook.py -o path/to/output --mode run
+                  marimo export html-wasm notebooks/test_1.py -o _site --mode run
           - name: 📦 Upload Pages Artifact
               uses: actions/upload-pages-artifact@v3
               with:
-                  path: path/to/output
+                  path: _site #path/to/output
           - run: echo "🍏 This job's status is ${{ job.status }}."
 
     deploy:
