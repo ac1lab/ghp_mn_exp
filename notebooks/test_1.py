@@ -22,7 +22,8 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    options = ["Apples", "Oranges", "Pears"]
+    options = ["apples", "oranges", "bananas"]
+    # Create an interactive radio button
     pick = mo.ui.radio(options=options)
     pick
     return
@@ -31,7 +32,7 @@ def _(mo):
 @app.cell
 def _(pick, mo):
     # Display the selected option
-    mo.md(f"You chose ${pick.value}.")
+    mo.md(f"You chose {pick.value}.")
     return
 
 '''
