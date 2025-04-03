@@ -1,52 +1,57 @@
 import marimo
 
-#__generated_with = "0.10.9"
-app = marimo.App(width="medium")
+__generated_with = "0.10.6"
+app = marimo.App()
 
-'''
 @app.cell
 def _():
-    #import numpy as np
-    #import altair as alt
-    #import pandas as pd
-    #import marimo as mo
-    #return alt, mo, np, pd
-'''
+    import marimo as mo
+    return (mo,)
+
 
 @app.cell
 def _(mo):
     mo.md(
-        """
-        # Hello World
+        r"""
+        # Hello World Notebook
 
-        This notebook demonstrates a simple hello world in marimo app mode.
+        The is an example Hello World Marimo notebook.
         """
     )
     return
 
 '''
 @app.cell
-def _(alt, mo, np, pd):
-    # Create sample data
-    data = pd.DataFrame({"x": np.arange(100), "y": np.random.normal(0, 1, 100)})
-
-    # Create interactive chart
-    chart = mo.ui.altair_chart(
-        (
-            alt.Chart(data)
-            .mark_circle()
-            .encode(x="x", y="y", size=alt.value(100), color=alt.value("steelblue"))
-            .properties(height=400, title="Interactive Scatter Plot")
-        )
-    )
-    chart
-    return chart, data
+def _(mo):
+    # Create an interactive slider
+    n = mo.ui.slider(1, 100, value=50, label="Number of Fibonacci numbers")
+    n
+    return (n,)
 
 
 @app.cell
-def _(chart):
-    chart.value
-    return
+def _(fibonacci, mo, n):
+    fib = fibonacci(n.value)
+    mo.md(", ".join([str(f) for f in fib]))
+    return (fib,)
+
+
+@app.cell
+def _():
+    # Generate Fibonacci sequence
+    def fibonacci(n):
+        sequence = [0, 1]
+        for i in range(2, n):
+            sequence.append(sequence[i - 1] + sequence[i - 2])
+        return sequence
+    return (fibonacci,)
+
+
+@app.cell
+def _():
+    import numpy as np
+    import marimo as mo
+    return mo, np
 '''
 
 if __name__ == "__main__":
