@@ -24,8 +24,15 @@ def _(mo):
 def _(mo):
     options = ["Apples", "Oranges", "Pears"]
     radio = mo.ui.radio(options=options)
+    radio
     return
 
+
+@app.cell
+def _(radio, mo):
+    # Display the selected option
+    print(radio.value)
+    return
 
 '''
 @app.cell
