@@ -1,4 +1,4 @@
-name: ${{ github.actor }} Deploy main to github-pages
+name: Deploy main to github-pages
 
 
 on:
