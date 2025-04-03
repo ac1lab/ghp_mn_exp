@@ -40,7 +40,7 @@ jobs:
               # ... build
           - name: 📄 Export notebook
             #run: "marimo export html-wasm notebooks/test_1.py -o _site --mode edit"
-            Srun: "marimo export html-wasm notebooks/test_1.py -o _site --mode run"
+            run: "marimo export html-wasm notebooks/test_1.py -o _site --mode run"
             
           - name: 📦 Upload Pages Artifact
             uses: actions/upload-pages-artifact@v3
