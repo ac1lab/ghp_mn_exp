@@ -1,5 +1,4 @@
-name: Deploy main to github-pages
-#run-name: ${{ github.actor }} is deploying 'main' branch to github-pages.  Commit message: ${{ github.event.workflow_run.head_commit.message }} 🚀 
+name: ${{ github.actor }} Deploy main to github-pages
 
 
 on:
@@ -40,8 +39,8 @@ jobs:
               
               # ... build
           - name: 📄 Export notebook
-            run: "marimo export html-wasm notebooks/test_1.py -o _site --mode edit"
-            #run: "marimo export html-wasm notebooks/test_1.py -o _site --mode run"
+            #run: "marimo export html-wasm notebooks/test_1.py -o _site --mode edit"
+            run: "marimo export html-wasm notebooks/test_1.py -o _site --mode run"
             
           - name: 📦 Upload Pages Artifact
             uses: actions/upload-pages-artifact@v3
