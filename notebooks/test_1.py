@@ -23,15 +23,15 @@ def _(mo):
 @app.cell
 def _(mo):
     options = ["Apples", "Oranges", "Pears"]
-    radio = mo.ui.radio(options=options)
-    radio
+    pick = mo.ui.radio(options=options)
+    pick
     return
 
 
 @app.cell
-def _(radio, mo):
+def _(pick, mo):
     # Display the selected option
-    print(radio.value)
+    mo.md(f"You chose ${pick.value}.")
     return
 
 '''
