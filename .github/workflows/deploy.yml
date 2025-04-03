@@ -32,15 +32,15 @@ jobs:
           - name: 🐍 Set up Python
             uses: actions/setup-python@v5
             with:
-              python-version: 3.12
+              python-version: 3.12S
           - name: 📦 Install dependencies
             run: |
               uv pip install marimo
               
               # ... build
           - name: 📄 Export notebook
-            #run: "marimo export html-wasm notebooks/test_1.py -o _site --mode edit"
-            run: "marimo export html-wasm notebooks/test_1.py -o _site --mode run"
+            run: "marimo export html-wasm notebooks/test_1.py -o _site --mode edit"
+            #run: "marimo export html-wasm notebooks/test_1.py -o _site --mode run"
             
           - name: 📦 Upload Pages Artifact
             uses: actions/upload-pages-artifact@v3

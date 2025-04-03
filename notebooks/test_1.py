@@ -20,6 +20,13 @@ def _(mo):
     )
     return
 
+@app.cell
+def _(mo):
+    options = ["Apples", "Oranges", "Pears"]
+    radio = mo.ui.radio(options=options)
+    return
+
+
 '''
 @app.cell
 def _(mo):
@@ -28,7 +35,8 @@ def _(mo):
     n
     return (n,)
 
-
+    
+    
 @app.cell
 def _(fibonacci, mo, n):
     fib = fibonacci(n.value)
